@@ -1,0 +1,55 @@
+name: cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
+title: .
+maintainer: CMS InSpec Dev Team
+copyright: .
+copyright_email: 
+summary: .
+license: Apache-2.0
+version: 0.1.0
+supports:
+  platform: os
+inspec_version: "~> 3.0"
+
+depends:
+- name: cms-ars-3.1-moderate-oracle-mysql-ee-5.7-cis-overlay
+  path: ../cms-ars-3.1-moderate-oracle-mysql-ee-5.7-cis-overlay
+
+attributes:
+  - name: user
+    description: 'username MySQL DB Server'
+    type: string
+    default: 'root'
+
+  - name: password
+    description: 'password MySQL DB Server'
+    type: string
+    default: 'P@ssw0rd1'
+
+  - name: host
+    description: 'hostname MySQL DB Server'
+    default: 'localhost'
+
+  - name: port
+    description: 'port MySQL DB Server'
+    type: numeric
+    default: 3306
+
+  - name: mysql_users
+  description: 'List of MySQL database users'
+    type: array
+    default: ['root']   
+
+  - name: is_mysql_server_slave_configured
+    description: 'Set to true if the MySQL server has a slave configured'
+    type: boolean
+    default: true
+
+  - name: mysql_administrative_users
+    description: 'List of MySQL administrative users'
+    type: array
+    default: ['root'] 
+
+  - name: mysql_users_allowed_modify_or_create
+    description: 'List of MySQL users allows to modify or create data structures'
+    type: array
+    default: ['root'] 
