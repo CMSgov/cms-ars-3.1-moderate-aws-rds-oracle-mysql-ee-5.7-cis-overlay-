@@ -11,8 +11,8 @@ supports:
 inspec_version: "~> 3.0"
 
 depends:
-- name: cms-ars-3.1-moderate-oracle-mysql-ee-5.7-cis-overlay
-  path: ../cms-ars-3.1-moderate-oracle-mysql-ee-5.7-cis-overlay
+- name: aws-rds-oracle-mysql-ee-5.7-cis-overlay
+  path: ../aws-rds-oracle-mysql-ee-5.7-cis-overlay
 
 attributes:
   - name: user

@@ -43,7 +43,7 @@ When the __"runner"__ host uses this profile overlay for the first time, follow 
 mkdir profiles
 cd profiles
 git clone https://github.cms.gov/ispg-dev/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay.git
-git clone https://github.com/mitre/cms-ars-3.1-moderate-oracle-mysql-ee-5.7-cis-overlay.git
+git clone https://github.com/mitre/aws-rds-oracle-mysql-ee-5.7-cis-baseline.git
 cd cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 bundle install
 cd ..
@@ -53,7 +53,7 @@ inspec exec cms-ars-3.1-moderate-oracle-aws-rds-mysql-ee-5.7-cis-overlay --attrs
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```
-cd profiles/cms-ars-3.1-moderate-oracle-mysql-ee-5.7-cis-overlay
+cd profiles/aws-rds-oracle-mysql-ee-5.7-cis-overlay
 git pull
 cd ../cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 git pull
