@@ -35,7 +35,7 @@ attributes:
     default: 3306
 
   - name: mysql_users
-  description: 'List of MySQL database users'
+    description: 'List of MySQL database users'
     type: array
     default: ['root']   
 
