@@ -35,6 +35,9 @@ mysql_administrative_users: ['root']
 # description: 'List of MySQL users allows to modify or create data structures'
 mysql_users_allowed_modify_or_create: ['root'] 
 ```
+## Note
+
+It is assumed that the password complexity plugin: validate_password.so is installed, otherwise control 7.6 will fail.
 
 ## Running This Overlay
 When the __"runner"__ host uses this profile overlay for the first time, follow these steps: 
