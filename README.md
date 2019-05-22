@@ -2,7 +2,7 @@
 InSpec profile overlay to validate the secure configuration of AWS RDS Oracle MySQL EE 5.7 against [CIS's](https://www.cisecurity.org/cis-benchmarks/) Oracle MySQL EE 5.7 Benchmark 1.0.0 tailored for [CMS ARS 3.1](https://www.cms.gov/Research-Statistics-Data-and-Systems/CMS-Information-Technology/InformationSecurity/Info-Security-Library-Items/ARS-31-Publication.html) for CMS systems categorized as Moderate. 
 
 ## Getting Started  
-It is intended and recommended that InSpec and this profile overlay be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target remotely over __ssh__.
+It is intended and recommended that InSpec and this profile overlay be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target.
 
 __For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
 
@@ -11,29 +11,29 @@ Latest versions and installation options are available at the [InSpec](http://in
 The following attributes must be configured in an attributes file for the profile to run correctly. More information about InSpec attributes can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
  
 ```
-# description: 'username MySQL DB Server'
-user: 'root'
+# description: Username MySQL DB Server (e.g., 'root')
+user: ''
 
-# description: 'password MySQL DB Server'
-password: 'P@ssw0rd1'
+# description: Password MySQL DB Server (e.g., 'P@ssw0rd1')
+password: ''
 
-# description: 'hostname MySQL DB Server'
-host: 'localhost'
+# description: Hostname MySQL DB Server (e.g., 'localhost')
+host: ''
 
-# description: 'port MySQL DB Server'
+# description: Port MySQL DB Server (e.g., 3306)
 port: 3306
 
-# description: 'List of MySQL database users'
-mysql_users: ['root']   
+# description: List of MySQL database users (e.g., ['root'])
+mysql_users: []   
 
-# description: 'Set to true if the MySQL server has a slave configured'
-is_mysql_server_slave_configured: true
+# description: Set to true if the MySQL server has a slave configured
+is_mysql_server_slave_configured: false
 
-# description: 'List of MySQL administrative users'
-mysql_administrative_users: ['root'] 
+# description: List of MySQL administrative users (e.g., ['root'])
+mysql_administrative_users: [] 
 
-# description: 'List of MySQL users allows to modify or create data structures'
-mysql_users_allowed_modify_or_create: ['root'] 
+# description: List of MySQL users allows to modify or create data structures (e.g., ['root'])'
+mysql_users_allowed_modify_or_create: [] 
 ```
 ## Note
 
@@ -50,7 +50,7 @@ git clone https://github.com/mitre/aws-rds-oracle-mysql-ee-5.7-cis-baseline.git
 cd cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 bundle install
 cd ..
-inspec exec cms-ars-3.1-moderate-oracle-aws-rds-mysql-ee-5.7-cis-overlay --attrs=<path_to_your_attributes_file/name_of_your_attributes_file.yml> --target=ssh://<your_target_host_name_or_ip_address> --user=<target_account_with_administrative_privileges> --password=<password_for_target_account> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+inspec exec cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --attrs=<path_to_your_attributes_file/name_of_your_attributes_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
@@ -62,7 +62,7 @@ cd ../cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 git pull
 bundle install
 cd ..
-inspec exec cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --attrs=<path_to_your_attributes_file/name_of_your_attributes_file.yml> --target=ssh://<your_target_host_name_or_ip_address> --user=<target_account_with_administrative_privileges> --password=<password_for_target_account> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+inspec exec cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --attrs=<path_to_your_attributes_file/name_of_your_attributes_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 ## Viewing the JSON Results
@@ -79,7 +79,7 @@ The JSON InSpec results file may also be loaded into a __[full heimdall server](
 * Alicia Sturtevant
 
 ## Getting Help
-To report a bug or feature request, please open an [issue](https://github.cms.gov/ispg/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay/issues/new).
+To report a bug or feature request, please open an [issue](https://github.cms.gov/ISPG/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay/issues/new).
 
 ## License
 This is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license. 
