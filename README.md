@@ -58,7 +58,7 @@ inspec exec cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --attrs
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
 
 ```
-cd profiles/aws-rds-oracle-mysql-ee-5.7-cis-overlay
+cd profiles/aws-rds-oracle-mysql-ee-5.7-cis-baseline
 git pull
 cd ../cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 git pull
