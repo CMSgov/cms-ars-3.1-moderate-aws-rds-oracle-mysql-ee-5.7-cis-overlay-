@@ -8,9 +8,9 @@ license: Apache-2.0
 version: 0.1.0
 
 depends:
-- name: aws-rds-oracle-mysql-ee-5.7-cis-overlay
-  path: ../aws-rds-oracle-mysql-ee-5.7-cis-overlay
-
+- name: aws-rds-oracle-mysql-ee-5.7-cis-baseline
+  path: ../aws-rds-oracle-mysql-ee-5.7-cis-baseline
+   
 attributes:
   - name: user
     description: 'username MySQL DB Server (e.g., ''root'').'
