@@ -5,9 +5,27 @@ copyright:
 copyright_email: 
 summary: "CMS ARS 3.1 Moderate Overlay InSpec Validation Profile for AWS RDS Oracle MySQL EE 5.7 STIG"
 license: Apache-2.0
-version: 1.0.5
+version: 1.0.6
 inspec_version: ">= 4.0"
 
 depends:
 - name: aws-rds-oracle-mysql-ee-5.7-cis-baseline
-  url: https://github.com/mitre/aws-rds-oracle-mysql-ee-5.7-cis-baseline/archive/master.tar.gz
+  url: https://github.com/mitre/aws-rds-oracle-mysql-ee-5.7-cis-baseline/archive/rds_adjustments.tar.gz
+  
+inputs:
+  - name: user
+    description: 'username MySQL DB Server'
+    type: string
+    value: ''
+    sensitive: true
+
+  - name: password
+    description: 'password MySQL DB Server'
+    type: string
+    value: ''
+    sensitive: true
+
+  - name: host
+    description: 'hostname of MySQL DB Server'
+    value: ''
+    sensitive: true
