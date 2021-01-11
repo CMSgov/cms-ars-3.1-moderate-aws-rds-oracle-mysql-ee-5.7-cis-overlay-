@@ -8,8 +8,6 @@ __For the best security of the runner, always install on the runner the _latest 
 
 Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
 
-Git is required to download the latest InSpec profiles using the instructions below. Git can be downloaded from the [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) site. 
-
 ## Tailoring to Your Environment
 The following inputs must be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
  
@@ -26,16 +24,19 @@ host: ''
 # Description: Port MySQL DB Server (e.g., 3306)
 port: 3306
 
-# Description: List of MySQL database users (e.g., ['root'])
-mysql_users: []   
+# Description: Approved version expected to be installed (e.g., ['5.7.31'])
+approved_mysql_version: ''
+
+# Description: List of MySQL database users (e.g., ['rdsadmin','testuser1','user2'])
+mysql_users: ['rdsadmin']   
 
 # Description: Set to true if the MySQL server has a slave configured
 is_mysql_server_slave_configured: false
 
-# Description: List of MySQL administrative users (e.g., ['root'])
-mysql_administrative_users: [] 
+# Description: List of MySQL administrative users (e.g., ['rdsadmin','testadmin1','admin2'])
+mysql_administrative_users: ['rdsadmin'] 
 
-# Description: List of MySQL users allows to modify or create data structures (e.g., ['root'])'
+# Description: List of MySQL users allows to modify or create data structures (e.g., ['rdsadmin'])'
 mysql_users_allowed_modify_or_create: [] 
 ```
 ## Note
