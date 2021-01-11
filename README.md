@@ -24,16 +24,19 @@ host: ''
 # Description: Port MySQL DB Server (e.g., 3306)
 port: 3306
 
-# Description: List of MySQL database users (e.g., ['root'])
-mysql_users: []   
+# Description: Approved version expected to be installed (e.g., ['5.7.31'])
+approved_mysql_version: ''
+
+# Description: List of MySQL database users (e.g., ['rdsadmin','testuser1','user2'])
+mysql_users: ['rdsadmin']   
 
 # Description: Set to true if the MySQL server has a slave configured
 is_mysql_server_slave_configured: false
 
-# Description: List of MySQL administrative users (e.g., ['root'])
-mysql_administrative_users: [] 
+# Description: List of MySQL administrative users (e.g., ['rdsadmin','testadmin1','admin2'])
+mysql_administrative_users: ['rdsadmin'] 
 
-# Description: List of MySQL users allows to modify or create data structures (e.g., ['root'])'
+# Description: List of MySQL users allows to modify or create data structures (e.g., ['rdsadmin'])'
 mysql_users_allowed_modify_or_create: [] 
 ```
 ## Note
