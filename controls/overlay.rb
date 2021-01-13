@@ -109,6 +109,11 @@ include_controls 'oracle-mysql-ee-5.7-cis-baseline' do
     end
   end
 
+  control '8.1' do 
+    impact 0.0
+    desc 'caveat', 'This is Not Applicable since the related security control is not mandatory in CMS ARS 3.1'
+  end 
+
   control '8.2' do 
     impact 0.0
     desc 'caveat', 'This is Not Applicable since the related security control is not mandatory in CMS ARS 3.1'
