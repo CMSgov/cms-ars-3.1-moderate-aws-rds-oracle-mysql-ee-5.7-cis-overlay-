@@ -4,11 +4,26 @@ InSpec profile overlay to validate the secure configuration of AWS RDS Oracle My
 ## Getting Started  
 It is intended and recommended that InSpec and this profile overlay be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target.
 
-__For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
+__For the best security of the runner, always install on the runner the _latest version_ of InSpec.__ 
 
-Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
+__The simplest way to install InSpec is to use this command for *nix or Mac, or:__
+```
+curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+```
+
+__or this command for Windows (Powershell)__
+```
+. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project inspec
+```
+Latest versions and other installation options are available at the [InSpec](http://inspec.io/) site.
+
+__After installing InSpec, run this command to support addressing manual controls (discussed below):__
+```
+"inspec plugin install inspec-reporter-json-hdf" 
+```
 
 ## Tailoring to Your Environment
+### Inputs
 The following inputs must be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
  
 ```
@@ -39,15 +54,59 @@ mysql_administrative_users: ['rdsadmin']
 # Description: List of MySQL users allows to modify or create data structures (e.g., ['rdsadmin'])'
 mysql_users_allowed_modify_or_create: [] 
 ```
-## Note
 
+### Addressing manual controls
+
+[InSpec control #2.4](https://github.com/mitre/oracle-mysql-ee-5.7-cis-baseline/blob/master/controls/2.4.rb) in this profile requires manual review, whereby someone  interviews/examines the requirement and confirms (attests as to) whether or not the control requirements have been satisfied. These attestations must be configured in a json ".json" file:
+```
+{
+    "plugins": {
+        "inspec-reporter-json-hdf": {
+            "attestations": [
+                {
+                    "control_id": "2.4",
+                    "explanation": "<Attestation text explaining compliance or non-compliance>",
+                    "frequency": "<How often this review/attestation needs to be updated: (allowed values: annually, semiannually, quarterly, monthly, every2weeks, weekly, every3days, daily)>",
+                    "status": "passed",
+                    "updated": "2020-12-10",
+                    "updated_by": "John Doe, ISSO"
+                }
+            ]
+        }
+    },
+    "version": "1.2"
+}
+```
+_for example_
+```
+{
+    "plugins": {
+        "inspec-reporter-json-hdf": {
+            "attestations": [
+                {
+                    "control_id": "2.4",
+                    "explanation": "Interviewed team to ensure the default or shared cryptographic material is not being used",
+                    "frequency": "monthly",
+                    "status": "passed",
+                    "updated": "2020-12-10",
+                    "updated_by": "John Doe, ISSO"
+                }
+            ]
+        }
+    },
+    "version": "1.2"
+}
+```
+
+
+### Note
 It is assumed that the password complexity plugin: validate_password.so is installed, otherwise control 7.6 will fail.
 
 ## Running This Overlay Directly from Github
 
 ```
 # How to run
-inspec exec https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+inspec exec https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter hdf:<path_to_your_output_file/name_of_your_output_file.json> --config <path_to_your_attestation_file/name_of_your_attestation_file.json>
 ```
 
 ### Different Run Options
