@@ -109,7 +109,7 @@ _for example_
 
 
 ### Note
-It is assumed that the password complexity plugin: validate_password.so is installed, otherwise control 7.6 will fail.
+_It is assumed that the password complexity plugin: validate_password.so is installed in your mysql instance, otherwise control 7.6 will fail._
 
 ## Running This Overlay Directly from Github
 
