@@ -65,11 +65,20 @@ mysql_users_allowed_modify_or_create: []
             "attestations": [
                 {
                     "control_id": "2.4",
+                    
                     "explanation": "<Attestation text explaining compliance or non-compliance>",
-                    "frequency": "<How often this review/attestation needs to be updated: (allowed values: annually, semiannually, quarterly, monthly, every2weeks, weekly, every3days, daily)>",
-                    "status": "passed",
-                    "updated": "2020-12-10",
-                    "updated_by": "John Doe, ISSO"
+                    
+                    "frequency": "<How often this review/attestation needs to be updated>", 
+                   
+         (frequency value choices: annually, semiannually, quarterly, monthly, every2weeks, weekly, every3days, daily)
+             
+                    "status": "<assigned value based on review/attestation>",
+                    
+            (status value choices: passed, failed)
+
+                    "updated": "<last date attestation was performed (in YYYY-MM-DD format)>",
+                                        
+                    "updated_by": "<Name, Role of person performing attestation for this control>" 
                 }
             ]
         }
@@ -126,7 +135,7 @@ mkdir profiles
 cd profiles
 git clone https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay.git
 inspec archive cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
-inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter hdf:<path_to_your_output_file/name_of_your_output_file.json> --config <path_to_your_attestation_file/name_of_your_attestation_file.json> 
 ```
 
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
@@ -136,7 +145,7 @@ cd cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 git pull
 cd ..
 inspec archive cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --overwrite
-inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> ---reporter hdf:<path_to_your_output_file/name_of_your_output_file.json> --config <path_to_your_attestation_file/name_of_your_attestation_file.json> 
 ```
 
 ## Using Heimdall for Viewing the JSON Results
