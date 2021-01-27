@@ -2,12 +2,67 @@
 InSpec profile overlay to validate the secure configuration of AWS RDS Oracle MySQL EE 5.7 against [CIS's](https://www.cisecurity.org/cis-benchmarks/) Oracle MySQL EE 5.7 Benchmark 1.0.0 tailored for [CMS ARS 3.1](https://www.cms.gov/Research-Statistics-Data-and-Systems/CMS-Information-Technology/InformationSecurity/Info-Security-Library-Items/ARS-31-Publication.html) for CMS systems categorized as Moderate. 
 
 ## Getting Started  
-It is intended and recommended that InSpec and this profile overlay be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target.
 
-__For the best security of the runner, always install on the runner the _latest version_ of InSpec and supporting Ruby language components.__ 
+### InSpec (CINC-auditor) setup
+For maximum flexibility/accessibility, we’re moving to “cinc-auditor”, the open-source packaged binary version of Chef InSpec, compiled by the CINC (CINC Is Not Chef) project in coordination with Chef using Chef’s always-open-source InSpec source code. For more information: https://cinc.sh/
 
-Latest versions and installation options are available at the [InSpec](http://inspec.io/) site.
+It is intended and recommended that CINC-auditor and this profile overlay be run from a __"runner"__ host (such as a DevOps orchestration server, an administrative management system, or a developer's workstation/laptop) against the target. This can be any Unix/Linux/MacOS or Windows runner host, with access to the Internet.
 
+__For the best security of the runner, always install on the runner the _latest version_ of CINC-auditor.__ 
+
+__The simplest way to install InSpec is to use this command for *nix or Mac:__
+```
+curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+```
+
+__or this command for Windows (Powershell):__
+```
+. { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project inspec
+```
+To confirm successful install of cinc-auditor:
+```
+cinc-auditor -v
+```
+> sample output:  _4.24.32_
+
+Latest versions and other installation options are available at https://cinc.sh/start/auditor/.
+
+### MySQL client setup
+
+To run the MySQL profile against an AWS RDS Instance, InSpec (cinc-auditor) expects the mysql client to be readily available on the same runner system it is installed on.
+ 
+For example, to install the mysql client on a Linux runner host:
+```
+sudo yum install mysql
+```
+To confirm successful install of mysql:
+```
+which mysql
+```
+> sample output:  _/usr/bin/mysql_
+```
+mysql –version
+```		
+> sample output:  *mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1*
+
+Test mysql connectivity to your instance from your runner host:
+```
+mysql -u <master user> -p<password>  -h <endpoint>.amazonaws.com -P 3306
+```		
+> sample output:
+>  *Welcome to the MariaDB monitor.  Commands end with ; or \g.*
+>  *Your MySQL connection id is 7536*
+>  *Server version: 5.6.41 Source distribution*
+>
+>  *Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.*
+>
+>  *Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.*
+>
+>  *MySQL [(none)]
+>  *quit*
+>  *Bye*
+
+For installation of mysql client on other operating systems for your runner host, visit https://www.mysql.com/
 ## Tailoring to Your Environment
 The following inputs must be configured in an inputs ".yml" file for the profile to run correctly for your specific environment. More information about InSpec inputs can be found in the [InSpec Profile Documentation](https://www.inspec.io/docs/reference/profiles/).
  
@@ -47,7 +102,7 @@ It is assumed that the password complexity plugin: validate_password.so is insta
 
 ```
 # How to run
-inspec exec https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
+cinc-auditor exec https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay/archive/master.tar.gz --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json>
 ```
 
 ### Different Run Options
@@ -66,8 +121,8 @@ When the __"runner"__ host uses this profile overlay for the first time, follow 
 mkdir profiles
 cd profiles
 git clone https://github.com/CMSgov/cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay.git
-inspec archive cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
-inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+cinc-auditor archive cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
+cinc-auditor exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 For every successive run, follow these steps to always have the latest version of this overlay and dependent profiles:
@@ -76,8 +131,8 @@ For every successive run, follow these steps to always have the latest version o
 cd cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay
 git pull
 cd ..
-inspec archive cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --overwrite
-inspec exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
+cinc-auditor archive cms-ars-3.1-moderate-aws-rds-oracle-mysql-ee-5.7-cis-overlay --overwrite
+cinc-auditor exec <name of generated archive> --input-file=<path_to_your_inputs_file/name_of_your_inputs_file.yml> --reporter=cli json:<path_to_your_output_file/name_of_your_output_file.json> 
 ```
 
 ## Using Heimdall for Viewing the JSON Results
