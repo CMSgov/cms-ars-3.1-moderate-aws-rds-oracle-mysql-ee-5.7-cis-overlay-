@@ -10,12 +10,12 @@ It is intended and recommended that CINC-auditor and this profile overlay be run
 
 __For the best security of the runner, always install on the runner the _latest version_ of CINC-auditor.__ 
 
-__The simplest way to install InSpec is to use this command for *nix or Mac:__
+__The simplest way to install InSpec is to use this command for a UNIX/Linux/MacOS runner platform:__
 ```
 curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor
 ```
 
-__or this command for Windows (Powershell):__
+__or this command for Windows runner platform (Powershell):__
 ```
 . { iwr -useb https://omnitruck.cinc.sh/install.ps1 } | iex; install -project cinc-auditor
 ```
@@ -29,7 +29,7 @@ Latest versions and other installation options are available at https://cinc.sh/
 
 ### MySQL client setup
 
-To run the MySQL profile against an AWS RDS Instance, InSpec (cinc-auditor) expects the mysql client to be readily available on the same runner system it is installed on.
+To run the MySQL profile against an AWS RDS Instance, CINC-auditor expects the mysql client to be readily available on the same runner system it is installed on.
  
 For example, to install the mysql client on a Linux runner host:
 ```
