@@ -10,7 +10,7 @@ It is intended and recommended that CINC-auditor and this profile overlay be run
 
 __For the best security of the runner, always install on the runner the _latest version_ of CINC-auditor.__ 
 
-__The simplest way to install InSpec is to use this command for a UNIX/Linux/MacOS runner platform:__
+__The simplest way to install CINC-auditor is to use this command for a UNIX/Linux/MacOS runner platform:__
 ```
 curl -L https://omnitruck.cinc.sh/install.sh | sudo bash -s -- -P cinc-auditor
 ```
