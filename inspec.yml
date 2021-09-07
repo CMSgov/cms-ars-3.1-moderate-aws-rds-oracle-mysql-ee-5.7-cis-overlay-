@@ -10,7 +10,7 @@ inspec_version: ">= 4.0"
 
 depends:
 - name: aws-rds-oracle-mysql-ee-5.7-cis-baseline
-  url: https://github.com/mitre/aws-rds-oracle-mysql-ee-5.7-cis-baseline/archive/master.tar.gz
+  url: https://github.com/mitre/aws-rds-oracle-mysql-ee-5.7-cis-baseline/archive/7.5_fix.tar.gz
   
 inputs:
   - name: user
