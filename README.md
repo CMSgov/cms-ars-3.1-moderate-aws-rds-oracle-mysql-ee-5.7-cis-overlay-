@@ -27,6 +27,11 @@ cinc-auditor -v
 
 Latest versions and other installation options are available at https://cinc.sh/start/auditor/.
 
+### Manual Attestation Support:
+Install this reporter plugin [_**to support addressing manual controls**_](https://github.com/mitre/inspec-reporter-json-hdf):
+```
+cinc-auditor plugin install inspec-reporter-json-hdf
+```
 ### MySQL client setup
 
 To run the MySQL profile against an AWS RDS Instance, CINC-auditor expects the mysql client to be readily available on the same runner system it is installed on.
